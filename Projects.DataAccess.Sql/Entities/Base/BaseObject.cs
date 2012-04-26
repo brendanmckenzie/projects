@@ -1,4 +1,5 @@
 ﻿using Projects.DataAccess.Entities.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace Projects.DataAccess.Sql.Entities.Base
 {

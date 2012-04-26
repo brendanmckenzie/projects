@@ -9,12 +9,92 @@ namespace Projects.Testing.DataAccess
     [TestClass]
     public class Sql
     {
-        [TestMethod]
+        //[TestMethod]
         public void CreateDatabase()
         {
             UnitOfWork uow = new UnitOfWork();
 
             uow.CreateDatabase();
+        }
+
+        [TestMethod]
+        public void CreateProject()
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+
+            var before = unitOfWork.Projects.Count();
+
+            var project = unitOfWork.Projects.Create();
+            project.Name = "Test project";
+            project.Status = Projects.DataAccess.Entities.ProjectStatus.Development;
+
+            unitOfWork.Projects.Add(project);
+
+            unitOfWork.Commit();
+
+            Assert.AreEqual<long>(before + 1, unitOfWork.Projects.Count());
+        }
+
+        [TestMethod()]
+        public void FindProjectById()
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+
+            var project = unitOfWork.Projects.Create();
+            project.Name = "Test project";
+
+            unitOfWork.Projects.Add(project);
+
+            unitOfWork.Commit();
+
+            var found = unitOfWork.Projects.FindById(project.Id);
+
+            Assert.AreEqual(project, found);
+        }
+
+        [TestMethod()]
+        public void DeleteProject()
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+
+            var before = unitOfWork.Projects.Count();
+
+            var project = unitOfWork.Projects.Create();
+            project.Name = "Test project";
+
+            unitOfWork.Projects.Add(project);
+
+            unitOfWork.Commit();
+
+            var found = unitOfWork.Projects.FindById(project.Id);
+
+            unitOfWork.Projects.Remove(found);
+            unitOfWork.Commit();
+
+            Assert.AreEqual(before, unitOfWork.Projects.Count());
+        }
+
+        [TestMethod()]
+        public void UpdateProject()
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+
+            const string nameBefore = "PROJECT TEST";
+            const string nameAfter = "TEST PROJECT";
+
+            var projectA = unitOfWork.Projects.Create();
+            projectA.Name = nameBefore;
+
+            unitOfWork.Projects.Add(projectA);
+            unitOfWork.Commit();
+
+            var projectB = unitOfWork.Projects.FindById(projectA.Id);
+            Assert.AreEqual(projectB.Name, projectA.Name);
+            projectB.Name = nameAfter;
+            unitOfWork.Commit();
+
+            var projectC = unitOfWork.Projects.FindById(projectA.Id);
+            Assert.AreEqual(projectC.Name, projectB.Name);
         }
     }
 }

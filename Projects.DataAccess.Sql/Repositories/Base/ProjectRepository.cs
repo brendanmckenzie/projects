@@ -27,7 +27,8 @@ namespace Projects.DataAccess.Sql.Repositories.Base
 
         public IEnumerable<I> FindBy(Expression<Func<I, bool>> predicate)
         {
-            return _context.Set<C>().Cast<I>().Where(predicate);
+            // TODO: fix this.
+            return _context.Set<C>().ToList().Cast<I>().AsQueryable().Where(predicate);
         }
 
         public I FindById(int id)
