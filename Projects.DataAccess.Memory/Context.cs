@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
 using Projects.DataAccess.Memory.Entities;
 
@@ -6,21 +8,34 @@ namespace Projects.DataAccess.Memory
 {
     internal class Context
     {
-        public List<Project> Projects { get; set; }
+        private Dictionary<Type, object> Lists;
 
         public IList<T> Set<T>()
         {
-            if (typeof(T) == typeof(Project))
+            if (!Lists.ContainsKey(typeof(T)))
             {
-                return (IList<T>)Projects;
+                Lists.Add(typeof(T), new List<T>());
             }
 
-            return null;
+            return (IList<T>)Lists[typeof(T)];
         }
 
         public Context()
         {
-            Projects = new List<Project>();
+            Lists = new Dictionary<Type, object>(new TypeComparer());
+        }
+
+        class TypeComparer : IEqualityComparer<Type>
+        {
+            public bool Equals(Type x, Type y)
+            {
+                return x.FullName == y.FullName;
+            }
+
+            public int GetHashCode(Type obj)
+            {
+                return obj.FullName.GetHashCode();
+            }
         }
     }
 }
