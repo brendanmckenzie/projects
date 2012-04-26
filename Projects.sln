@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 11
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{5A97904C-5196-4FD5-8A81-FDE3D6DA5EE6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Access", "Data Access", "{5A97904C-5196-4FD5-8A81-FDE3D6DA5EE6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{3F1F947C-7330-4944-B86F-18C65FAD4C39}"
 EndProject

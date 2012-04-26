@@ -9,14 +9,10 @@ namespace Projects.DataAccess.Sql
     {
         public DbSet<Project> Projects { get; set; }
 
-        public Context(bool createDatabase = false, string connectionString = null)
-            : base(connectionString)
+        public void CreateDatabase()
         {
-            if (createDatabase)
-            {
-                Database.SetInitializer<Context>(new DropCreateDatabaseAlways<Context>());
-                Database.Initialize(true);
-            }
+            Database.SetInitializer<Context>(new DropCreateDatabaseAlways<Context>());
+            Database.Initialize(true);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

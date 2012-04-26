@@ -46,7 +46,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="DataAccess.cs" />
+    <Compile Include="DataAccess\Memory.cs" />
+    <Compile Include="DataAccess\Sql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,10 +55,17 @@
       <Project>{3eab25a6-6c14-4518-900f-9f647d510a6c}</Project>
       <Name>Projects.DataAccess.Memory</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Projects.DataAccess.Sql\Projects.DataAccess.Sql.csproj">
+      <Project>{90d8e060-e209-4665-bca6-7399290292c8}</Project>
+      <Name>Projects.DataAccess.Sql</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Projects.DataAccess\Projects.DataAccess.csproj">
       <Project>{3e7aa3b8-ef86-4d55-b6fb-ecd8dd2813ae}</Project>
       <Name>Projects.DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

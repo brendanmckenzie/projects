@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Projects.DataAccess;
 using Projects.DataAccess.Memory;
 
-namespace Projects.Testing
+namespace Projects.Testing.DataAccess
 {
     [TestClass]
-    public class DataAccess
+    public class Memory
     {
         IUnitOfWork unitOfWork;
 
