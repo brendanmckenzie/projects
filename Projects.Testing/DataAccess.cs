@@ -20,7 +20,7 @@ namespace Projects.Testing
         [TestMethod]
         public void CreateProject()
         {
-            var id = 0;
+            const int id = 0;
 
             var before = unitOfWork.Projects.Count();
             var project = unitOfWork.Projects.Create();
@@ -37,7 +37,7 @@ namespace Projects.Testing
         [TestMethod()]
         public void FindProjectById()
         {
-            var id = 1;
+            const int id = 1;
 
             var project = unitOfWork.Projects.Create();
             project.Id = id;
@@ -55,7 +55,7 @@ namespace Projects.Testing
         [TestMethod()]
         public void DeleteProject()
         {
-            var id = 2;
+            const int id = 2;
 
             var before = unitOfWork.Projects.Count();
             var project = unitOfWork.Projects.Create();
@@ -71,6 +71,29 @@ namespace Projects.Testing
             unitOfWork.Projects.Remove(found);
 
             Assert.AreEqual(before, unitOfWork.Projects.Count());
+        }
+
+        [TestMethod()]
+        public void UpdateProject()
+        {
+            const int id = 3;
+            const string nameBefore = "PROJECT TEST";
+            const string nameAfter = "TEST PROJECT";
+
+            var projectA = unitOfWork.Projects.Create();
+            projectA.Id = id;
+            projectA.Name = nameBefore;
+
+            unitOfWork.Projects.Add(projectA);
+            unitOfWork.Commit();
+
+            var projectB = unitOfWork.Projects.FindById(id);
+            Assert.AreEqual(projectB.Name, projectA.Name);
+            projectB.Name = nameAfter;
+            unitOfWork.Commit();
+
+            var projectC = unitOfWork.Projects.FindById(id);
+            Assert.AreEqual(projectC.Name, projectB.Name);
         }
     }
 }
