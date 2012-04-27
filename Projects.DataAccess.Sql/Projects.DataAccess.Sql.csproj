@@ -48,7 +48,7 @@
     <Compile Include="Context.cs" />
     <Compile Include="Entities\Base\BaseObject.cs" />
     <Compile Include="Entities\Project.cs" />
-    <Compile Include="Repositories\Base\ProjectRepository.cs" />
+    <Compile Include="Repositories\Base\BaseRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
