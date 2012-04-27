@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Projects.DataAccess;
@@ -48,6 +49,22 @@ namespace Projects.Testing.DataAccess
             unitOfWork.Commit();
 
             var found = unitOfWork.Projects.FindById(project.Id);
+
+            Assert.AreEqual(project, found);
+        }
+
+        [TestMethod()]
+        public void FindProjectByName()
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+
+            var project = unitOfWork.Projects.Create();
+            project.Name = "Lorem ipsum dolor sit amit.";
+
+            unitOfWork.Projects.Add(project);
+            unitOfWork.Commit();
+
+            var found = unitOfWork.Projects.FindBy(p => p.Name.Contains("ipsum") && p.Id == project.Id).FirstOrDefault();
 
             Assert.AreEqual(project, found);
         }
