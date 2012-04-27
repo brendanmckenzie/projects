@@ -24,10 +24,5 @@ namespace Projects.DataAccess.Sql
         {
             _context.SaveChanges();
         }
-
-        public void CreateDatabase()
-        {
-            _context.CreateDatabase();
-        }
     }
 }

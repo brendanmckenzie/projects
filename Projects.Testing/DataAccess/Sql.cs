@@ -4,20 +4,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Projects.DataAccess;
 using Projects.DataAccess.Sql;
+using Projects.DataAccess.Entities;
 
 namespace Projects.Testing.DataAccess
 {
     [TestClass]
     public class Sql
     {
-        //[TestMethod]
-        public void CreateDatabase()
-        {
-            UnitOfWork uow = new UnitOfWork();
-
-            uow.CreateDatabase();
-        }
-
         [TestMethod]
         public void CreateProject()
         {
@@ -27,7 +20,7 @@ namespace Projects.Testing.DataAccess
 
             var project = unitOfWork.Projects.Create();
             project.Name = "Test project";
-            project.Status = Projects.DataAccess.Entities.ProjectStatus.Development;
+            project.Status = ProjectStatus.Development;
 
             unitOfWork.Projects.Add(project);
 
