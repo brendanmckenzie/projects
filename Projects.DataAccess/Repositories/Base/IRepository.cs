@@ -12,7 +12,9 @@ namespace Projects.DataAccess.Repositories.Base
         IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);
         T FindById(int id);
         void Add(T entity);
+        void Add(IEnumerable<T> entities);
         void Remove(T entity);
+        void Remove(IEnumerable<T> entity);
         T Create();
         long Count();
         bool Contains(int id);

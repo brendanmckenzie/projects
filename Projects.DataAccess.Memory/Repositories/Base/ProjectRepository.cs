@@ -40,9 +40,25 @@ namespace Projects.DataAccess.Memory.Repositories.Base
             _context.Set<C>().Add(entity as C);
         }
 
+        public void Add(IEnumerable<I> entities)
+        {
+            foreach (var e in entities)
+            {
+                Add(e);
+            }
+        }
+
         public void Remove(I entity)
         {
             _context.Set<C>().Remove(entity as C);
+        }
+
+        public void Remove(IEnumerable<I> entities)
+        {
+            foreach (var e in entities)
+            {
+                Remove(e);
+            }
         }
 
         public I Create()

@@ -96,5 +96,24 @@ namespace Projects.Testing.DataAccess
             var projectC = unitOfWork.Projects.FindById(projectA.Id);
             Assert.AreEqual(projectC.Name, projectB.Name);
         }
+
+        [TestMethod()]
+        public void DeleteAllProjects()
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+
+            const string name = "PROJECT TEST";
+
+            var project = unitOfWork.Projects.Create();
+            project.Name = name;
+
+            unitOfWork.Projects.Add(project);
+            unitOfWork.Commit();
+
+            unitOfWork.Projects.Remove(unitOfWork.Projects.FindAll());
+            unitOfWork.Commit();
+
+            Assert.AreEqual<long>(0L, unitOfWork.Projects.Count());
+        }
     }
 }

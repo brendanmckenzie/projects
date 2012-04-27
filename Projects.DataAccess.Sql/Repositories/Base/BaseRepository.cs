@@ -11,7 +11,7 @@ namespace Projects.DataAccess.Sql.Repositories.Base
 {
     internal class BaseRepository<I, C> : IRepository<I>
         where I : class, IBaseObject
-        where C : BaseObject
+        where C : BaseObject, I
     {
         private Context _context;
 
@@ -22,13 +22,12 @@ namespace Projects.DataAccess.Sql.Repositories.Base
 
         public IEnumerable<I> FindAll()
         {
-            return _context.Set<C>().Cast<I>();
+            return _context.Set<C>().ToList();
         }
 
         public IEnumerable<I> FindBy(Expression<Func<I, bool>> predicate)
         {
-            // TODO: fix this.
-            return _context.Set<C>().ToList().Cast<I>().AsQueryable().Where(predicate);
+            return _context.Set<C>().Where(predicate).ToList();
         }
 
         public I FindById(int id)
@@ -41,9 +40,25 @@ namespace Projects.DataAccess.Sql.Repositories.Base
             _context.Set<C>().Add(entity as C);
         }
 
+        public void Add(IEnumerable<I> entities)
+        {
+            foreach (var e in entities)
+            {
+                Add(e);
+            }
+        }
+
         public void Remove(I entity)
         {
             _context.Set<C>().Remove(entity as C);
+        }
+
+        public void Remove(IEnumerable<I> entities)
+        {
+            foreach (var e in entities)
+            {
+                Remove(e);
+            }
         }
 
         public I Create()
@@ -63,6 +78,7 @@ namespace Projects.DataAccess.Sql.Repositories.Base
 
         public void Dispose()
         {
+            _context.Dispose();
         }
     }
 }
