@@ -1,21 +1,23 @@
-steal( 'jquery/controller','jquery/view/ejs' )
-	.then( './views/init.ejs', function($){
-
-/**
- * @class Projects.Home
- */
-$.Controller('Projects.Home',
-/** @Static */
-{
-	defaults : {}
-},
-/** @Prototype */
-{
-	init : function(){
-		this.element.html("//projects/home/views/init.ejs",{
-			message: "Hello World"
-		});
-	}
-})
-
-});
+steal(
+    'jquery/controller',
+	'jquery/controller/view',
+    'jquery/view/mustache',
+    'projects/models')
+.then(
+    './views/init.mustache',
+    function ($) {
+        /**
+         * @class Projects.Home
+         */
+        $.Controller('Projects.Home',
+        /** @Static */
+        {
+            defaults: {}
+        },
+        /** @Prototype */
+        {
+            init: function () {
+                this.element.html(this.view('init.mustache', Projects.Models.Project.findAll()))
+            }
+        })
+    });

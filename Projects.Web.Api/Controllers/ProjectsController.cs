@@ -10,16 +10,16 @@ using Projects.DataAccess.Entities;
 
 namespace Projects.Web.Api.Controllers
 {
-    public class AccessController : ApiController
+    public class ProjectsController : ApiController
     {
         IUnitOfWork unitOfWork;
 
-        public AccessController()
+        public ProjectsController()
             : this(new UnitOfWork())
         {
         }
 
-        public AccessController(IUnitOfWork unitOfWork)
+        public ProjectsController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }

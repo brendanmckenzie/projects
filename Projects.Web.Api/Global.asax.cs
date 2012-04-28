@@ -38,6 +38,7 @@ namespace Projects.Web.Api
             
             var settings = new JsonSerializerSettings();
             settings.Converters.Add(new IsoDateTimeConverter());
+            settings.ContractResolver = new LowercaseContractResolver();
             GlobalConfiguration.Configuration.Formatters[0] = (new JsonNetFormatter(settings));
 
             RegisterGlobalFilters(GlobalFilters.Filters);
