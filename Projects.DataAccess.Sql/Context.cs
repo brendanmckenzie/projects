@@ -10,6 +10,7 @@ namespace Projects.DataAccess.Sql
         public DbSet<Project> Projects { get; set; }
 
         public Context()
+            : base()
         {
             Database.SetInitializer<Context>(new DropCreateDatabaseIfModelChanges<Context>());
             Database.Initialize(false);

@@ -23,17 +23,19 @@ namespace Projects.Web.Api
 
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
             routes.MapHttpRoute(
-                name: "Default",
-                routeTemplate: "{controller}/{action}/{id}",
-                defaults: new { id = UrlParameter.Optional }
+                name: "DefaultApi",
+                routeTemplate: "v1/{controller}/{id}/{action}",
+                defaults: new { id = RouteParameter.Optional, action = RouteParameter.Optional }
             );
         }
 
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
+            
             var settings = new JsonSerializerSettings();
             settings.Converters.Add(new IsoDateTimeConverter());
             GlobalConfiguration.Configuration.Formatters[0] = (new JsonNetFormatter(settings));

@@ -300,6 +300,7 @@ header {
         margin: 0;
         padding: 0;
         float: right;
+        text-shadow: 0 0 35px #fff;
     }
 
 .projects {
@@ -313,12 +314,29 @@ header {
         float: left;
     }
 
+        .projects .column h2 {
+            border-bottom: 1px solid #fff;
+            padding-bottom: 2px;
+            text-shadow:  0 0 25px #fff;
+        }
+
         .projects .column .project {
             margin: 10px 0 0 0;
             border: 1px solid black;
             padding: 10px;
             background-color: rgba(43, 145, 175, 0.6);
+            cursor: pointer;
+            -webkit-transition-property: background-color, color, text-shadow;
+            -webkit-transition-duration: 200ms;
+            -webkit-transition-timing-function: ease-in-out;
+            -webkit-transition-delay: 0;
         }
+
+            .projects .column .project:hover {
+                background-color: rgba(43, 145, 175, 0.8);
+                color: #1e1e1e;
+                text-shadow: 0 0 25px #fff;
+            }
 
 
 

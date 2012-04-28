@@ -7,5 +7,6 @@ namespace Projects.DataAccess.Memory.Entities
     {
         public string Name { get; set; }
         public ProjectStatus Status { get; set; }
+        public string Summary { get; set; }
     }
 }

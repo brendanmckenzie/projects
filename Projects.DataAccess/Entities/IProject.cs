@@ -13,5 +13,6 @@ namespace Projects.DataAccess.Entities
     public interface IProject : IBaseObject, INamedObject
     {
         ProjectStatus Status { get; set; }
+        string Summary { get; set; }
     }
 }

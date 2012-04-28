@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+	<head>
+		<title>Projects.Project.Create</title>
+        <style type='text/css'>
+            body {font-family: verdana}
+        </style>
+	</head>
+	<body>
+	    <h1>Projects.Project.Create Demo</h1>
+		<form id='create' action=''></form>
+		<div id='projects'></div>
+		<script type='text/javascript' 
+                src='../../../steal/steal.js'>
+        </script>
+		<script type='text/javascript'>
+			steal('projects/project/create','projects/fixtures',function(){
+				
+				$('#create').projects_project_create();
+				Projects.Models.Project.bind('created', function(ev, project){
+					$('<div>').html("<h3>"+project.name+"</h3><p>"+project.description+"</p>")
+					        .appendTo( $('#projects') )
+				})
+				
+			})
+		</script>
+	</body>
+</html>
