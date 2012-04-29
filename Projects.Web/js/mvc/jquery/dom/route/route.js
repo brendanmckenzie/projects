@@ -382,7 +382,7 @@ function( $ ) {
 				onready = false;
 			}
 			if( val === true || onready === true ) {
-				setState();
+			    if (setState != undefined) { setState(); }
 			}
 			return $.route;
 		},

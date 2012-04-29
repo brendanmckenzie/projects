@@ -1,15 +1,12 @@
 <div class="projects">
-    <div class="column">
-        <h2>current.</h2>
-        <div class="project">
-            <h3>a project. AAA</h3>
-        </div>
+  <div class="column">
+    <h2>current.</h2>
+    {{#this}}
+    <div class="project" data-id="{{id}}">
+      <h3>{{name}}</h3>
+      <div class="intro">{{summary}}</div>
+      <div class="status">status...</div>
     </div>
-    <div class="column">
-        <h2>past. AAA</h2>
-        <div class="project">
-            <h3>another project with a longer name.</h3>
-            <div class="intro">intro / expert something something something.</div>
-        </div>
-    </div>
+    {{/this}}
+  </div>
 </div>

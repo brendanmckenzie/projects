@@ -17,7 +17,18 @@ steal(
         /** @Prototype */
         {
             init: function () {
-                this.element.html(this.view('init.mustache', Projects.Models.Project.findAll()))
+                this.render();
+            },
+            update: function () {
+                this.render();
+            },
+            render: function () {
+                this.element.html(this.view('init.mustache', Projects.Models.Project.findAll()));
+
+            },
+            '.project click': function (el, ev) {
+                var id = el.attr('data-id');
+                location.hash = $.route.url({ id: id });
             }
         })
     });

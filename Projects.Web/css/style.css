@@ -317,7 +317,7 @@ header {
         .projects .column h2 {
             border-bottom: 1px solid #fff;
             padding-bottom: 2px;
-            text-shadow:  0 0 25px #fff;
+            text-shadow: 0 0 25px #fff;
         }
 
         .projects .column .project {
@@ -332,10 +332,46 @@ header {
             -webkit-transition-delay: 0;
         }
 
+            .projects .column .project h3 {
+                letter-spacing: -1px;
+            }
+
             .projects .column .project:hover {
                 background-color: rgba(43, 145, 175, 0.8);
                 color: #1e1e1e;
                 text-shadow: 0 0 25px #fff;
+            }
+
+            .projects .column .project .intro {
+                font-size: 12px;
+                border-top: 1px solid #c8c8c8;
+                padding-top: 2px;
+                margin-top: 2px;
+                -webkit-transition-property: border-top;
+                -webkit-transition-duration: 200ms;
+                -webkit-transition-timing-function: ease-in-out;
+                -webkit-transition-delay: 0;
+            }
+
+            .projects .column .project:hover .intro {
+                border-top: 1px solid #1e1e1e;
+            }
+
+            .projects .column .project .status {
+                font-size: 12px;
+                font-family: Consolas;
+                text-align: right;
+                border-top: 1px solid #c8c8c8;
+                padding-top: 2px;
+                margin-top: 2px;
+                -webkit-transition-property: border-top;
+                -webkit-transition-duration: 200ms;
+                -webkit-transition-timing-function: ease-in-out;
+                -webkit-transition-delay: 0;
+            }
+
+            .projects .column .project:hover .status {
+                border-top: 1px solid #1e1e1e;
             }
 
 
